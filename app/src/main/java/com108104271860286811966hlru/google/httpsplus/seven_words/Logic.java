@@ -21,7 +21,6 @@ public class Logic {
     SQLiteDatabase database;
     Context context;
     ContentValues contentValues;
-    static String TAG = "MyLog";
     String word[];
     String translation[];
     String date;
@@ -48,10 +47,9 @@ public class Logic {
 
     void initialise() {
         if (checkThisDate()) {
-            Log.d(TAG, "GET");
             getThisDateData();
         } else {
-            Log.d(TAG, "create");
+
             createThisDayData();
         }
     }
@@ -142,7 +140,7 @@ public class Logic {
             database = dbHelper.getReadableDatabase();
         }
         cursor = database.query(tableName, null, null, null, null, null, null);
-
+cursor.moveToFirst();
         while (i <= 7) {
             cursor.moveToPosition(position);
 

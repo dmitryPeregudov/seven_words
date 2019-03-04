@@ -24,7 +24,7 @@ ListView listView;
 
 String english[];
 String translate[];
-static String TAG="MyLog";
+
 
 private final String DB_NAME="english.db";
     @Override
