@@ -1,6 +1,7 @@
 package com108104271860286811966hlru.google.httpsplus.seven_words;
 
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import java.util.Date;
 import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -23,7 +25,6 @@ ListView listView;
 String english[];
 String translate[];
 static String TAG="MyLog";
-//TODO делать метод для окончания и перезапуска слов
 
 private final String DB_NAME="english.db";
     @Override
@@ -45,7 +46,35 @@ private final String DB_NAME="english.db";
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ((TextView) view).setText(translate[position]);
+        myAsyntask asyntask=new myAsyntask(view,english,position);
+        asyntask.execute();
 
 
+            }
+
+}
+class myAsyntask extends AsyncTask<Void,Integer,Void>{
+    View view;
+    String traslate[];
+    int position;
+myAsyntask(View view,String[] traslate, int i){
+    this.traslate=traslate;
+    this.view=view;
+    position=i;
+}
+    @Override
+    protected Void doInBackground(Void... voids) {
+        int i=0;
+        while (i<4){
+            SystemClock.sleep(500);
+            i++;
+        }
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        super.onPostExecute(aVoid);
+        ((TextView)view).setText(traslate[position]);
     }
 }
