@@ -1,21 +1,16 @@
 package com108104271860286811966hlru.google.httpsplus.seven_words;
 
-import android.database.Cursor;
+
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-import java.util.Date;
-import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 ArrayAdapter<String> adapter;
@@ -45,9 +40,11 @@ private final String DB_NAME="english.db";
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+       if (((TextView) view).getText()!=translate[position]){
         ((TextView) view).setText(translate[position]);
         myAsyntask asyntask=new myAsyntask(view,english,position);
         asyntask.execute();
+    }
 
 
             }
